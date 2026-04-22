@@ -16,78 +16,35 @@
 # ===================================
 
 model_list:
-  # --- siliconflow (OpenAI 兼容，一个 Key 使用多种模型) ---
-  # 这是一个自定义 OpenAI 兼容模型渠道的示例
-  - model_name: openai/Qwen/Qwen3.5-397B-A17B
+  - model_name: minimax-2-5
     litellm_params:
-      model: openai/Qwen/Qwen3.5-397B-A17B
-      api_key: "os.environ/LITELLM_API_KEY" # 从环境变量读取 Key，安全防泄漏
-      api_base: https://api.siliconflow.cn/v1
-      # 以下配置是表示如何启用Qwen模型的enable_thinking开关
-      extra_body:
-        chat_template_kwargs:
-          enable_thinking: true
+      model: nvidia_nim/minimaxai/minimax-m2.5
+      api_base: https://integrate.api.nvidia.com/v1
+      api_key: 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
 
-  # --- AIHubmix (OpenAI 兼容，一个 Key 使用多种模型) ---
-  - model_name: openai/gpt-4o-mini
+  - model_name: glm-5
     litellm_params:
-      model: openai/gpt-4o-mini
-      api_key: "os.environ/AIHUBMIX_KEY"
-      api_base: https://aihubmix.com/v1
+      model: nvidia_nim/z-ai/glm5
+      api_base: https://integrate.api.nvidia.com/v1
+      api_key: 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
 
-  - model_name: openai/claude-3-5-sonnet-20241022
+  - model_name: deepseek-3-2
     litellm_params:
-      model: openai/claude-3-5-sonnet-20241022
-      api_key: "os.environ/AIHUBMIX_KEY"
-      api_base: https://aihubmix.com/v1
+      model: nvidia_nim/deepseek-ai/deepseek-v3.2
+      api_base: https://integrate.api.nvidia.com/v1
+      api_key: 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
 
-  # --- DeepSeek 官方 API (原生 provider，自动解析 base_url) ---
-  - model_name: deepseek/deepseek-chat
+  - model_name: kimi-2-5
     litellm_params:
-      model: deepseek/deepseek-chat
-      api_key: "os.environ/DEEPSEEK_API_KEY"
+      model: nvidia_nim/moonshotai/kimi-k2.5
+      api_base: https://integrate.api.nvidia.com/v1
+      api_key: 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
 
-  - model_name: deepseek/deepseek-reasoner
+  - model_name: qwen3-5
     litellm_params:
-      model: deepseek/deepseek-reasoner
-      api_key: "os.environ/DEEPSEEK_API_KEY"
+      model: nvidia_nim/qwen/qwen3.5-397b-a17b
+      api_base: https://integrate.api.nvidia.com/v1
+      api_key: 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
 
-  # --- Google Gemini (原生，多 Key 负载均衡) ---
-  - model_name: gemini/gemini-2.5-flash
-    litellm_params:
-      model: gemini/gemini-2.5-flash
-      api_key: "os.environ/GEMINI_API_KEY_1"
-
-  - model_name: gemini/gemini-2.5-flash
-    litellm_params:
-      model: gemini/gemini-2.5-flash
-      api_key: "os.environ/GEMINI_API_KEY_2"
-
-  # --- Anthropic Claude (原生) ---
-  # - model_name: anthropic/claude-3-5-sonnet-20241022
-  #   litellm_params:
-  #     model: anthropic/claude-3-5-sonnet-20241022
-  #     api_key: "os.environ/ANTHROPIC_API_KEY"
-
-  # --- OpenRouter (聚合平台) ---
-  # - model_name: openai/meta-llama/llama-3-70b-instruct
-  #   litellm_params:
-  #     model: openai/meta-llama/llama-3-70b-instruct
-  #     api_key: "os.environ/OPENROUTER_API_KEY"
-  #     api_base: https://openrouter.ai/api/v1
-
-  # --- Ollama 本地模型 ---
-  # - model_name: ollama/qwen3:8b
-  #   litellm_params:
-  #     model: ollama/qwen3:8b
-  #     api_base: http://localhost:11434
-
-# ===================================
-# Router 设置（可选）
-# ===================================
-router_settings:
-  routing_strategy: simple-shuffle    # simple-shuffle / least-busy / latency-based
-  num_retries: 2                      # 单个 deployment 失败后重试次数
-  # timeout: 30                       # 请求超时（秒）
-  # allowed_fails: 3                  # deployment 被冷却前允许的失败次数
-  # cooldown_time: 60                 # deployment 冷却时间（秒）
+litellm_settings:
+  set_verbose: true
