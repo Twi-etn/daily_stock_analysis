@@ -24,7 +24,7 @@ model_list:
       
   - model_name: minimax-2-7
     litellm_params:
-      model: MiniMax-M2.7
+      model: minimax/MiniMax-M2.7
       api_base: https://api.minimaxi.com/v1
       api_key: sk-cp-6L2E43kFD8Ld1QmhGTQ7k9hbIZikpNXOoy3us6a1jQr9Pb17jyLDzT-z7sRCpTMRlYAjcj4oWJv4QU5opq64NKTITVsGDpryrInzBRmcE6ygeAW69KwKi2s
 
